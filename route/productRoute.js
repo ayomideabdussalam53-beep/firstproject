@@ -5,7 +5,7 @@ const {
   getAllProducts
 } = require('../controller/productController');
 
-router.post('/upload', uploadProduct);
+router.post('/upload/:userId', uploadProduct);
 router.get('/getAll', getAllProducts);
 
 module.exports = router;

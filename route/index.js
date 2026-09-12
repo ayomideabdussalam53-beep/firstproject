@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const userRoute = require("./userRoutes.js");
 
+const productRoute = require("./productRoute.js");
 mongoose
   .connect("mongodb://localhost:27017/myDatabase")
   .then(() => console.log("Connected to MongoDB"))
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoute);
+app.use("/products", productRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

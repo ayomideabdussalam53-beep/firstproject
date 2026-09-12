@@ -1,0 +1,12 @@
+$kind: http-request
+url: localhost:3000/users/new-user
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "name": "Abdussalam",
+      "email": "abdussalam53",
+      "password": "12345678"
+    }
+order: 2000

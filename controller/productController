@@ -1,5 +1,5 @@
 const productModel = require("../model/productModel");
-
+const userModel = require('../model/userModel.js');
 /**
  * create a new product
  * get all products
@@ -11,7 +11,12 @@ const productModel = require("../model/productModel");
 // CREATE PRODUCT/upload product
 const uploadProduct = async (req, res) => {
   try {
+    const getUserId = await userModel.findById(req.params.userId);
     const { name, price, description, category, stock, image } = req.body;
+
+    if (!getUserId) {
+      return res.status(404).json({ message: "User not found" });
+    }
     const product = await productModel.create({
       name,
       price,
@@ -20,7 +25,11 @@ const uploadProduct = async (req, res) => {
       stock,
       image
     });
-    res.status(201).json({
+
+await getUserId.products.push(product._id);
+    await getUserId.save();
+
+    return res.status(201).json({
       message: "Product created successfully",
       data: product
     });

@@ -1,0 +1,14 @@
+$kind: http-request
+url: http://localhost:3000/users/6a9f3edaf1aabc4fd7a4efd1
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+        "name": "sodiq",
+        "email": "dilldhd23",
+        "password": "werty"
+    }
+order: 4000
