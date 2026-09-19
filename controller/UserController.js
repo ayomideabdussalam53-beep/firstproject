@@ -1,4 +1,5 @@
 const userModel = require("../model/userModel.js");
+const bcrypt = require("bcrypt");
 
 // Create a new user(post)
 //read user(get ): general get, and single get
@@ -10,10 +11,30 @@ const userModel = require("../model/userModel.js");
  const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const user = await userModel.create({ name, email, password });
+    const genSalt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, genSalt);
+    const user = await userModel.create({ name, email, password: hashedPassword }); 
+    
     res.status(201).json({ message: 'User created successfully',
         data : user
      });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+    res.status(200).json({ message: 'Login successful', data: user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -83,4 +104,4 @@ const userModel = require("../model/userModel.js");
   };
 
 
-  module.exports = { createUser, getAllUsers, getSingleUser, updateUser, deleteUser };
+  module.exports = { createUser, getAllUsers, getSingleUser, updateUser, deleteUser , loginUser}; 

@@ -1,0 +1,26 @@
+$kind: http-request
+name: UPLOAD PRODUCT WITH IMAGE
+url: 'localhost:3000/products/upload/6a9f395ef1aabc4fd7a4efce'
+method: POST
+order: 1200952456512954
+body:
+  type: formdata
+  content:
+    - key: name
+      type: text
+      value: shoe
+    - key: price
+      type: text
+      value: '30000'
+    - key: description
+      type: text
+      value: good made shoe
+    - key: category
+      type: text
+      value: men
+    - key: stock
+      type: text
+      value: '10'
+    - key: image
+      type: file
+      src: '/C:/Users/USER/Downloads/download.avif'

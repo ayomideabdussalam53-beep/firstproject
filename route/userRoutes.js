@@ -9,6 +9,6 @@ userRoute.get("/getall-users", getAllUsers);
 userRoute.get("/get-one-user/:id", getSingleUser);
 userRoute.put("/update-user/:id", updateUser);
 userRoute.delete("/delete-user/:id", deleteUser);
-
+userRoute.get("/login", loginUser);
 
 module.exports = userRoute;
