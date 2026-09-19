@@ -1,5 +1,5 @@
-const productModel = require("../model/productmodel");
-const userModel = require('../model/userModel.js');
+const productModel = require("../model/productModel");
+const userModel = require('../model/usermodel.js');
 const cloudinary = require('../config/cloudinary');
 /**
  * create a new product

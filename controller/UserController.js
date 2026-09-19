@@ -1,4 +1,4 @@
-const usermodel = require("../model/userModel.js");
+const usermodel = require("../model/usermodel.js");
 const bcrypt = require("bcrypt");
 
 // Create a new user(post)
